@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>神隐の最終兵器SQL城堡</title>
+<style>
+  :root{ --accent:<!--ACCENT-->; }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; min-height:100vh; display:flex; justify-content:flex-end;
+    padding:36px 64px;
+    background:#0B1118 url("assets/hero-login.jpg") center/cover no-repeat fixed;
+    font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+    color:#EAF2FA;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    /* 这张底图很亮，左上（大字）和左下（标注）需要一个局部压暗，否则白字看不清 */
+    background:
+      radial-gradient(900px 540px at 0% 4%,  rgba(11,17,24,.88) 0%, rgba(11,17,24,0) 68%),
+      radial-gradient(780px 400px at 0% 100%, rgba(11,17,24,.90) 0%, rgba(11,17,24,0) 70%),
+      linear-gradient(90deg, rgba(11,17,24,.16) 0%, rgba(11,17,24,.42) 56%, rgba(11,17,24,.82) 100%);
+  }
+  .caption{
+    position:fixed; left:64px; bottom:64px; z-index:1;
+    font-size:12px; letter-spacing:1px; color:#E6EEF7;
+    text-shadow:0 2px 10px rgba(0,0,0,.95), 0 1px 2px rgba(0,0,0,.9);
+  }
+  .caption span{display:block; margin-top:8px; font-style:italic; color:#A9B8C8;}
+  /* 大字口号：故意不做精细处理 */
+  .shout{
+    position:fixed; left:64px; top:96px; z-index:1;
+    width:600px;
+    font-size:46px; font-weight:900; line-height:1.16;
+    color:#FFFFFF;
+    transform:rotate(-3deg);
+    text-shadow:0 4px 26px rgba(0,0,0,.95), 0 1px 3px rgba(0,0,0,.85);
+  }
+  .card{
+    position:relative; z-index:1;
+    width:420px; padding:38px 36px; margin:auto 0;
+    background:rgba(11,17,24,.78);
+    backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px);
+    border:1px solid #3B4D62; border-radius:20px;
+    box-shadow:0 28px 70px rgba(0,0,0,.60);
+  }
+  /* 关卡切换条 */
+  .row{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px;}
+  .tab{
+    flex:1 1 0; min-width:56px; text-align:center; padding:8px 0;
+    border-radius:9px; font-size:12px; text-decoration:none;
+    color:#8FA3B8; border:1px solid #22303F; background:#0C131B;
+  }
+  .tab.on{color:#06121A; font-weight:700; background:var(--accent); border-color:var(--accent);}
+  .tab b{display:block; font-size:9px; letter-spacing:.5px; opacity:.75; margin-top:2px; font-weight:600;}
+  .eyebrow{
+    font-size:11px; letter-spacing:2px; color:var(--accent);
+    font-weight:600; text-transform:uppercase; margin-bottom:14px;
+  }
+  h1{font-size:30px; margin:0 0 10px;}
+  .sub{font-size:13px; color:#7D8B9A; margin:0 0 8px; line-height:1.6;}
+  .tech{font-family:ui-monospace,Menlo,Consolas,monospace; font-size:10px;
+        letter-spacing:.5px; color:#5D6B7A; margin:0 0 24px;}
+  label{display:block; font-size:12px; color:#8FA3B8; margin:18px 0 8px;}
+  input[type=text],input[type=password]{
+    width:100%; height:44px; padding:0 14px; color:#C9D6E4; font-size:14px;
+    background:#0C131B; border:1px solid #22303F; border-radius:10px; outline:none;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  input:focus{border-color:var(--accent); box-shadow:0 0 0 3px rgba(34,211,238,.15);}
+  button{
+    width:100%; height:46px; margin-top:26px; border:0; border-radius:10px;
+    background:var(--accent); color:#06121A; font-size:15px; font-weight:700;
+    cursor:pointer; transition:filter .2s;
+  }
+  button:hover{filter:brightness(1.08);}
+  .hint{margin-top:16px; font-size:11px; color:#8296A8;}
+  .links{margin-top:14px; font-size:11px;}
+  .links a{color:#22D3EE; text-decoration:none; margin-right:12px;}
+  @media (max-width:760px){
+    body{justify-content:center; padding:24px;}
+    body::before{background:rgba(11,17,24,.62);}
+    .caption{display:none;}
+    .shout{left:20px; right:20px; top:40px; width:auto; font-size:26px;}
+    .card{width:100%; max-width:420px;}
+  }
+</style>
+</head>
+<body>
+  <form class="card" action="/check" method="GET" autocomplete="off">
+    <!--TABS-->
+    <div class="eyebrow">神隐の最終兵器 · <!--DIFF--></div>
+    <h1><!--NAME--></h1>
+    <p class="sub"><!--SUB--></p>
+    <p class="tech"><!--TECH--></p>
+
+    <label for="username">用户名</label>
+    <input id="username" name="username" type="text" placeholder="admin">
+
+    <label for="password">密码</label>
+    <input id="password" name="password" type="password" placeholder="••••••••">
+
+    <input type="hidden" name="lv" id="lv" value="<!--LV-->">
+
+    <button type="submit">登 录</button>
+    <div class="hint">正常登录一定失败：后端拿 md5(输入) 比对，库里存的是明文。</div>
+    <div class="hint" style="margin-top:6px;color:#6B7A8A">传输层已加密，网关看不到你输入的 payload。写脚本的话，照页面源码里那个编码函数来。</div>
+    <div class="links">
+      <a href="/hint?lv=<!--LV-->">提示</a><a href="/score">计分板</a><a href="/writeup?lv=<!--LV-->">解法</a>
+    </div>
+  </form>
+
+  <div class="caption">
+    L1 → L4 · 从注释绕过到时间盲注
+    <span>beginner → insane sql injection lab</span>
+  </div>
+
+  <div class="shout">在世界的终焉，忍着是唯一</div>
+
+  <script>
+    // 传输层：异或 + base64，带 v2: 标记。
+    // 网关会先解 base64 再匹配关键词，所以光 base64 不够；异或之后它解出来是乱码。
+    // 注入本身完全不变，只是 HTTP 层看不见明文。
+    var TX_KEY = 'shen7yin';
+    var toWire = function (s) {
+      var b = new TextEncoder().encode(s);
+      for (var i = 0; i < b.length; i++) b[i] = b[i] ^ TX_KEY.charCodeAt(i % TX_KEY.length);
+      return 'v2:' + btoa(String.fromCharCode.apply(null, b));
+    };
+    var lvEl = document.getElementById('lv');
+    document.querySelector('form').addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      var u = document.getElementById('username').value;
+      var p = document.getElementById('password').value;
+      location.href = '/check?lv=' + encodeURIComponent(lvEl.value)
+                    + '&username=' + encodeURIComponent(toWire(u))
+                    + '&password=' + encodeURIComponent(toWire(p));
+    });
+  </script>
+</body>
+</html>
