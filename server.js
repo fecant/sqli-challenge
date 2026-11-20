@@ -75,28 +75,28 @@ const PUBLIC_ROWS = [
 const LEVELS = {
   1: {
     id: 1, accent: '#34D399', diff: 'EASY',
-    name: '第一关 · 深渊回望',
+    name: '第一关 · 炒鸡结丹',
     sub: '哼、就这？连引号都不敢闭合的话，本小姐可要笑你一辈子了哦～',
     tech: 'no filter · full echo',
     echo: 'full', filter: 'none', quips: 'tutorial',
   },
   2: {
     id: 2, accent: '#22D3EE', diff: 'MEDIUM',
-    name: '第二关 · 偶像的黄昏',
+    name: '第二关 · 优异的婪',
     sub: '诶——双写都不会？笨蛋笨蛋，人家可、可没有在提示你哦！',
     tech: 'single-pass strip · full echo',
     echo: 'full', filter: 'single', quips: 'tutorial',
   },
   3: {
     id: 3, accent: '#FBBF24', diff: 'HARD',
-    name: '第三关 · 永恒轮回',
+    name: '第三关 · 被诬陷晓',
     sub: '看不见了吧？嘻嘻，活该～ 谁让你只会照抄别人的 writeup 呢。',
     tech: 'recursive strip · no space · no echo',
     echo: 'none', filter: 'recursive', quips: 'taunt',
   },
   4: {
     id: 4, accent: '#F87171', diff: 'INSANE',
-    name: '第四关 · 上帝已死',
+    name: '第四关 · 晌抵在一吻',
     sub: '……不、不理你了。反正你也猜不到的啦，哼。',
     tech: 'recursive strip · no space · silent response',
     echo: 'silent', filter: 'recursive', quips: 'none',

@@ -68,7 +68,7 @@ Settings → Secrets and variables → Actions → New repository secret：
 
 | 名称 | 值 |
 |---|---|
-| `DOCKERHUB_USERNAME` | 你的 Docker Hub 用户名（本例 `Intanoste`） |
+| `DOCKERHUB_USERNAME` | 你的 Docker Hub 用户名（本例 `lntanoste`） |
 | `DOCKERHUB_TOKEN` | Docker Hub 的 Personal Access Token（不是登录密码） |
 
 PAT 创建位置：Docker Hub → Account settings → Personal access tokens → New token，权限给 `Read & Write`。
@@ -80,7 +80,7 @@ git tag v1.0.0
 git push origin v1.0.0
 ```
 
-Actions 跑完后，镜像就是 `intanoste/sqli-challenge:v1.0.0` 和 `:latest`。
+Actions 跑完后，镜像就是 `lntanoste/sqli-challenge:v1.0.0` 和 `:latest`。
 
 > 推送会自动创建仓库，不需要先在 Docker Hub 网页点 Create Repository。
 > 镜像默认是 Public，CTF 平台才能拉取。
@@ -93,7 +93,7 @@ Actions 跑完后，镜像就是 `intanoste/sqli-challenge:v1.0.0` 和 `:latest`
 |---|---|---|---|---|
 | 题目标题 | 第一关 · 深渊回望 | 第二关 · 偶像的黄昏 | 第三关 · 永恒轮回 | 第四关 · 上帝已死 |
 | 题目类型 | ctf-动态题目 | 同左 | 同左 | 同左 |
-| 镜像 tag | `intanoste/sqli-challenge:latest` | 同左 | 同左 | 同左 |
+| 镜像 tag | `lntanoste/sqli-challenge:latest` | 同左 | 同左 | 同左 |
 | 静态答案 | **关闭** | 关闭 | 关闭 | 关闭 |
 | http 端口号 | `3000` | `3000` | `3000` | `3000` |
 | 额外环境变量 | `{"LEVEL":"1"}` | `{"LEVEL":"2"}` | `{"LEVEL":"3"}` | `{"LEVEL":"4"}` |
